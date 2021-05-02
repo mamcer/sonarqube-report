@@ -1,0 +1,122 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <style>
+        h1 {
+            font-family: sans-serif;
+            font-size: 32px
+        }
+
+        h2 {
+            font-family: sans-serif;
+            font-size: 28px
+        }
+
+        p {
+            font-family: sans-serif;
+            font-size: 16px
+        }
+
+        div.center {
+            text-align: center;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        table.center {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="overflow-x:auto">
+        <div>
+            <h1><a href="http://localhost:9000/dashboard?id={{project-name}}" target="_blank">{{project-name}}</a>
+            </h1>
+            <p>Last analysis: <strong>{{last-analysis}}</strong></p>
+        </div>
+        <div class="page-header">
+            <h2>Summary of current period <small>(period started on {{period-date}})</small></h2>
+        </div>
+        </br>
+        <table>
+            <tr>
+                <td>
+                    <h2><a href="http://localhost:9000/project/issues?id={{project-name}}&resolved=false&types=BUG"
+                            target="_blank">Bugs</a></h2>
+                    <p>Total: <strong>{{bugs}}</strong></p>
+                    <p>New: <strong><a
+                                href="http://localhost:9000/project/issues?createdAfter={{created-after}}&createdBefore={{created-before}}&id={{project-name}}&resolved=false&types=BUG"
+                                target="_blank">{{new_bugs}}</a></strong></p>
+                </td>
+                <td>
+                    <h2><a href="http://localhost:9000/project/issues?id={{project-name}}&resolved=false&types=VULNERABILITY"
+                            target="_blank">Vulnerabilities</a></h2>
+                    <p>Total: <strong>{{vulnerabilities}}</strong></p>
+                    <p>New: <strong><a
+                                href="http://localhost:9000/project/issues?createdAfter={{created-after}}&createdBefore={{created-before}}&id={{project-name}}&resolved=false&types=VULNERABILITY"
+                                target="_blank">{{new_vulnerabilities}}</a></strong></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2><a href="http://localhost:9000/project/issues?facetMode=effort&id={{project-name}}&resolved=false&types=CODE_SMELL"
+                            target="_blank">Technical Debt</a></h2>
+                    <p>Total: <strong>{{sqale_index}}</strong></p>
+                    <p>New: <strong>{{new_technical_debt}}</strong></p>
+                </td>
+                <td>
+                    <h2><a href="http://localhost:9000/project/issues?id={{project-name}}&resolved=false&types=CODE_SMELL"
+                            target="_blank">Code Smells</a></h2>
+                    <p>Total: <strong>{{code_smells}}</strong></p>
+                    <p>New: <strong><a
+                                href="http://localhost:9000/project/issues?createdAfter={{created-after}}&createdBefore={{created-before}}&id={{project-name}}&resolved=false&types=CODE_SMELL"
+                                target="_blank">{{new_code_smells}}</a></strong></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2><a href="http://localhost:9000/component_measures?id={{project-name}}&metric=tests"
+                            target="_blank">Unit Tests</a></h2>
+                    <p>Total: <strong>{{tests}}</strong></p>
+                    <p>Execution time: <strong>{{test_execution_time}}</strong></p>
+                </td>
+                <td>
+                    <h2><a href="http://localhost:9000/component_measures?id={{project-name}}&metric=coverage"
+                            target="_blank">Coverage</a></h2>
+                    <p>Total: <strong>{{coverage}}%</strong></p>
+                    <p>New: <strong>{{new_coverage}}%</strong></p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <h2><a href="http://localhost:9000/component_measures?id={{project-name}}&metric=duplicated_lines_density"
+                            target="_blank">Duplications</a></h2>
+                    <p>Total: <strong>{{duplicated_lines_density}}%</strong></p>
+                    <p>Duplicated blocks: <strong>{{duplicated_blocks}}</strong></p>
+                </td>
+            </tr>
+        </table>
+        <br/>
+        <div class="page-header">
+            <h2>New issues since previous analysis <small>({{days_since_previous_analysis}} day(s))</small></h2>
+        </div>
+        </br>
+        {{new_issues}}
+    </div>
+</body>
+
+</html>
