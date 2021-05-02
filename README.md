@@ -2,6 +2,8 @@
 
 SonarQube Report is a console application which connects to a SonarQube server instance. Gets different configurable metric values from the rest API, creates a custom html report and send it by email.
 
+> You can also find information about this application in [this blog post](https://mamcer.github.io/2021-05-01-sonar-qube-email-report/)
+
 ## Email template
 
 You can customize the email send by the tool through an email template. A html file `email-template.html` in the same directory as the application.
